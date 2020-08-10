@@ -1,0 +1,56 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pillowfight
+spec:
+  backoffLimit: 0
+  parallelism: 10
+  completions: 10
+  template:
+    metadata:
+      labels:
+        app: pillowfight
+        version: v1
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: registry.hub.docker.com/jibijose/pillowfight:latest
+          imagePullPolicy: IfNotPresent
+          name: pillowfight
+          resources:
+            requests:
+              memory: 2Gi
+              cpu: 1000m
+            limits:
+              memory: 4Gi
+              cpu: 2000m
+          env:
+            - name: CB_HOST
+              value: localhost
+            - name: CB_BUCKET
+              value: pillow
+            - name: CB_USER
+              value: Administrator
+            - name: CB_PASSWORD
+              value: "password"
+            - name: MIN_SIZE
+              value: "1024"
+            - name: MAX_SIZE
+              value: "1024"
+            - name: THREAD_COUNT
+              value: "2"
+            - name: ITEMS_COUNT
+              value: "1000"
+            - name: MUTATION_PERCENTAGE
+              value: "50"
+            - name: BATCH_SIZE
+              value: "10"
+            - name: JSON_FLAG
+              value: "--json"
+            - name: SUBDOC_FLAG
+              value: "--subdoc"
+            - name: COMPRESS_FLAG
+              value: "--compress"
+            - name: TIMINGS_FLAG
+              value: "--timings"
