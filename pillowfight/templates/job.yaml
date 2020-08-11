@@ -1,0 +1,57 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: {{ .Values.pillowfight.name}}
+    namespace: {{ .Values.pillowfight.namespace}}
+spec:
+    backoffLimit: 0
+    parallelism: {{ .Values.pillowfight.parallelism}}
+    completions: {{ .Values.pillowfight.completions}}
+    template:
+        metadata:
+            labels:
+                app: {{ .Values.pillowfight.name}}
+                version: v1
+        spec:
+            restartPolicy: Never
+            containers:
+              - image: registry.hub.docker.com/jibijose/pillowfight:latest
+                imagePullPolicy: {{ .Values.pillowfight.imagePullPolicy}}
+                name: {{ .Values.pillowfight.name}}
+                resources:
+                    requests:
+                        memory: {{ .Values.pillowfight.requests.memory}}
+                        cpu: {{ .Values.pillowfight.requests.cpu}}
+                    limits:
+                        memory: {{ .Values.pillowfight.limits.memory}}
+                        cpu: {{ .Values.pillowfight.limits.cpu}}
+                env:
+                  - name: CB_HOST
+                    value: {{ .Values.pillowfight.env.cb_host}}
+                  - name: CB_BUCKET
+                    value: {{ .Values.pillowfight.env.cb_bucket}}
+                  - name: CB_USER
+                    value: {{ .Values.pillowfight.env.cb_user}}
+                  - name: CB_PASSWORD
+                    value: "{{ .Values.pillowfight.env.cb_password}}"
+                  - name: MIN_SIZE
+                    value: "{{ .Values.pillowfight.env.min_size}}"
+                  - name: MAX_SIZE
+                    value: "{{ .Values.pillowfight.env.max_size}}"
+                  - name: THREAD_COUNT
+                    value: "{{ .Values.pillowfight.env.thread_count}}"
+                  - name: ITEMS_COUNT
+                    value: "{{ .Values.pillowfight.env.items_count}}"
+                  - name: MUTATION_PERCENTAGE
+                    value: "{{ .Values.pillowfight.env.mutation_percentage}}"
+                  - name: BATCH_SIZE
+                    value: "{{ .Values.pillowfight.env.batch_size}}"
+                  - name: JSON_FLAG
+                    value: "{{ .Values.pillowfight.env.json_flag}}"
+                  - name: SUBDOC_FLAG
+                    value: "{{ .Values.pillowfight.env.subdoc_flag}}"
+                  - name: COMPRESS_FLAG
+                    value: "{{ .Values.pillowfight.env.compress_flag}}"
+                  - name: TIMINGS_FLAG
+                    value: "{{ .Values.pillowfight.env.timings_flag}}"

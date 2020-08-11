@@ -1,0 +1,28 @@
+pillowfight:
+    name: pillowfight
+    namespace: pillowfight
+    image: registry.hub.docker.com/jibijose/pillowfight:latest
+    parallelism: 10
+    completions: 10
+    imagePullPolicy: IfNotPresent
+    requests:
+        memory: 2Gi
+        cpu: 1000m
+    limits:
+        memory: 4Gi
+        cpu: 2000m
+    env:
+        cb_host: localhost
+        cb_bucket: pillow
+        cb_user: Administrator
+        cb_password: "password"
+        min_size: "1024"
+        max_size: "1024"
+        thread_count: "2"
+        items_count: "1000"
+        mutation_percentage: "50"
+        batch_size: "10"
+        json_flag: "--json"
+        subdoc_flag: "--subdoc"
+        compress_flag: "--compress"
+        timings_flag: "--timings"
