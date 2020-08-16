@@ -27,6 +27,10 @@ spec:
                         memory: {{ .Values.pillowfight.limits.memory}}
                         cpu: {{ .Values.pillowfight.limits.cpu}}
                 env:
+                  - name: POD_NAME
+                    valueFrom:
+                      fieldRef:
+                        fieldPath: metadata.name
                   - name: CB_HOST
                     value: {{ .Values.pillowfight.env.cb_host}}
                   - name: CB_BUCKET
@@ -47,6 +51,12 @@ spec:
                     value: "{{ .Values.pillowfight.env.mutation_percentage}}"
                   - name: BATCH_SIZE
                     value: "{{ .Values.pillowfight.env.batch_size}}"
+                  - name: PERSIST_TO
+                    value: "{{ .Values.pillowfight.env.persist_to}}"
+                  - name: REPLICATE_TO
+                    value: "{{ .Values.pillowfight.env.replicate_to}}"
+                  - name: PATH_COUNT
+                    value: "{{ .Values.pillowfight.env.path_count}}"
                   - name: JSON_FLAG
                     value: "{{ .Values.pillowfight.env.json_flag}}"
                   - name: SUBDOC_FLAG
@@ -55,3 +65,8 @@ spec:
                     value: "{{ .Values.pillowfight.env.compress_flag}}"
                   - name: TIMINGS_FLAG
                     value: "{{ .Values.pillowfight.env.timings_flag}}"
+                  - name: RANDOM_BODY
+                    value: "{{ .Values.pillowfight.env.random_body_flag}}"
+                  - name: ADDL_FLAGS
+                    value: "{{ .Values.pillowfight.env.addl_flags}}"
+                  

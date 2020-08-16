@@ -6,11 +6,11 @@ pillowfight:
     completions: 10
     imagePullPolicy: IfNotPresent
     requests:
-        memory: 2Gi
+        memory: 2048Mi
         cpu: 1000m
     limits:
-        memory: 4Gi
-        cpu: 2000m
+        memory: 2048Mi
+        cpu: 1000m
     env:
         cb_host: localhost
         cb_bucket: pillow
@@ -22,7 +22,12 @@ pillowfight:
         items_count: "1000"
         mutation_percentage: "50"
         batch_size: "10"
+        persist_to: "0"
+        replicate_to: "0"
+        path_count: "1"
         json_flag: "--json"
         subdoc_flag: "--subdoc"
         compress_flag: "--compress"
         timings_flag: "--timings"
+        random_body_flag: ""
+        addl_flags: "--num-cycles -1"
