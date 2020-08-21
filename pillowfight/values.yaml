@@ -1,7 +1,7 @@
 pillowfight:
     name: pillowfight
     namespace: pillowfight
-    image: registry.hub.docker.com/jibijose/pillowfight:latest
+    image: jibijose/pillowfight:latest
     parallelism: 10
     completions: 10
     imagePullPolicy: IfNotPresent
@@ -25,6 +25,7 @@ pillowfight:
         persist_to: "0"
         replicate_to: "0"
         path_count: "1"
+        rate_limit: "0"
         json_flag: "--json"
         subdoc_flag: "--subdoc"
         compress_flag: "--compress"

@@ -57,6 +57,8 @@ spec:
                     value: "{{ .Values.pillowfight.env.replicate_to}}"
                   - name: PATH_COUNT
                     value: "{{ .Values.pillowfight.env.path_count}}"
+                  - name: RATE_LIMIT
+                    value: "{{ .Values.pillowfight.env.rate_limit}}"
                   - name: JSON_FLAG
                     value: "{{ .Values.pillowfight.env.json_flag}}"
                   - name: SUBDOC_FLAG

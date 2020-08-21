@@ -15,6 +15,7 @@ ENV BATCH_SIZE=10
 ENV PERSIST_TO=0
 ENV REPLICATE_TO=0
 ENV PATH_COUNT=1
+ENV RATE_LIMIT=0
 ENV JSON_FLAG=--json
 ENV SUBDOC_FLAG=--subdoc
 ENV COMPRESS_FLAG=--compress
@@ -33,4 +34,4 @@ useradd -u 431 -r -g cbc-pillowfight -d /home/cbc-pillowfight -s /sbin/nologin -
 chown -R cbc-pillowfight:cbc-pillowfight /home/cbc-pillowfight
 USER cbc-pillowfight
 
-ENTRYPOINT cbc-pillowfight -U couchbase://${CB_HOST}/${CB_BUCKET} -u ${CB_USER} -P "${CB_PASSWORD}" -p ${POD_NAME}-  -m ${MIN_SIZE}  -M ${MAX_SIZE} -t ${THREAD_COUNT} -I ${ITEMS_COUNT} -r ${MUTATION_PERCENTAGE} -B ${BATCH_SIZE} --persist-to ${PERSIST_TO} --replicate-to ${REPLICATE_TO} --pathcount ${PATH_COUNT} ${JSON_FLAG} ${SUBDOC_FLAG} ${COMPRESS_FLAG} ${TIMINGS_FLAG} ${RANDOM_BODY} ${ADDL_FLAGS}
+ENTRYPOINT cbc-pillowfight -U couchbase://${CB_HOST}/${CB_BUCKET} -u ${CB_USER} -P "${CB_PASSWORD}" -p ${POD_NAME}-  -m ${MIN_SIZE}  -M ${MAX_SIZE} -t ${THREAD_COUNT} -I ${ITEMS_COUNT} -r ${MUTATION_PERCENTAGE} -B ${BATCH_SIZE} --persist-to ${PERSIST_TO} --replicate-to ${REPLICATE_TO} --pathcount ${PATH_COUNT} --rate-limit ${RATE_LIMIT} ${JSON_FLAG} ${SUBDOC_FLAG} ${COMPRESS_FLAG} ${TIMINGS_FLAG} ${RANDOM_BODY} ${ADDL_FLAGS}
